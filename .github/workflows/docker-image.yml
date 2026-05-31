@@ -39,15 +39,15 @@ jobs:
             ghcr.io/${{ github.repository_owner }}/vote:latest
             ghcr.io/${{ github.repository_owner }}/vote:${{ github.sha }}
       -
-        name: Build and push results app
+        name: Build and push result app
         uses: docker/build-push-action@v7
         with:
-          context: results
-          file: ./results/Dockerfile
+          context: result
+          file: ./result/Dockerfile
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/results:latest
-            ghcr.io/${{ github.repository_owner }}/results:${{ github.sha }}
+            ghcr.io/${{ github.repository_owner }}/result:latest
+            ghcr.io/${{ github.repository_owner }}/result:${{ github.sha }}
       -
         name: Build and push worker app
         uses: docker/build-push-action@v7
@@ -58,4 +58,14 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository_owner }}/worker:latest
             ghcr.io/${{ github.repository_owner }}/worker:${{ github.sha }}
+      -
+        name: Build and push seed data
+        uses: docker/build-push-action@v7
+        with:
+          context: seed-data
+          file: ./seed-data/Dockerfile
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/seed-data:latest
+            ghcr.io/${{ github.repository_owner }}/seed-data:${{ github.sha }}
 
